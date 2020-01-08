@@ -7,14 +7,12 @@
 
 package frc.robot;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -26,11 +24,27 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * project.
  */
 public class Robot extends TimedRobot {
+  private DifferentialDrive m_myRobot;
+  private Joystick m_leftStick;
+  private Joystick m_rightStick;
+
   private static final String kDefaultAuto = "Default";
   private static final String kCustomAuto = "My Auto";
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
-  TalonSRX wristMotor = new TalonSRX(3); //what is happening
+
+  // Left Motors - Thank you from https://www.chiefdelphi.com/t/differential-drive-with-talon-srx/164666
+  WPI_TalonSRX m_frontLeft = new WPI_TalonSRX(1);
+  WPI_TalonSRX m_midLeft = new WPI_TalonSRX(2);
+  WPI_TalonSRX m_rearLeft = new WPI_TalonSRX(3);
+  SpeedControllerGroup m_left = new SpeedControllerGroup(m_frontLeft, m_midLeft, m_rearLeft);
+
+  // Right Motors
+  WPI_TalonSRX m_frontRight = new WPI_TalonSRX(4);
+  WPI_TalonSRX m_midRight = new WPI_TalonSRX(5);
+  WPI_TalonSRX m_rearRight = new WPI_TalonSRX(6);
+  SpeedControllerGroup m_right = new SpeedControllerGroup(m_frontRight, m_midRight, m_rearRight);
+  
   /**
    * This function is run when the robot is first started up and should be
    * used for any initialization code.
@@ -40,6 +54,10 @@ public class Robot extends TimedRobot {
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
+
+    // Tank Drive
+    m_myRobot = new DifferentialDrive(m_left, m_right);
+   
   }
 
   /**
@@ -93,6 +111,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
+    m_myRobot.tankDrive(m_leftStick.getY(), m_rightStick.getY());
   }
 
   /**
