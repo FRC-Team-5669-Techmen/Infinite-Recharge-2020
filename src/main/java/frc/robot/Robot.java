@@ -7,11 +7,10 @@
 
 package frc.robot;
 
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -34,19 +33,19 @@ public class Robot extends TimedRobot {
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
 
   // Left Motors - Thank you from https://www.chiefdelphi.com/t/differential-drive-with-talon-srx/164666
-  WPI_TalonSRX m_frontLeft = new WPI_TalonSRX(1);
-  WPI_TalonSRX m_midLeft = new WPI_TalonSRX(2);
-  WPI_TalonSRX m_rearLeft = new WPI_TalonSRX(3);
+  VictorSP m_frontLeft = new VictorSP(1);
+  VictorSP m_midLeft = new VictorSP(2);
+  VictorSP m_rearLeft = new VictorSP(3);
   SpeedControllerGroup m_left = new SpeedControllerGroup(m_frontLeft, m_midLeft, m_rearLeft);
 
   // Right Motors
-  WPI_TalonSRX m_frontRight = new WPI_TalonSRX(4);
-  WPI_TalonSRX m_midRight = new WPI_TalonSRX(5);
-  WPI_TalonSRX m_rearRight = new WPI_TalonSRX(6);
+  VictorSP m_frontRight = new VictorSP(4);
+  VictorSP m_midRight = new VictorSP(5);
+  VictorSP m_rearRight = new VictorSP(6);
   SpeedControllerGroup m_right = new SpeedControllerGroup(m_frontRight, m_midRight, m_rearRight);
   
   /**
-   * This function is run when the robot is first started up and should be
+   * This function is run when the robot is first started up and should bep
    * used for any initialization code.
    */
   @Override
