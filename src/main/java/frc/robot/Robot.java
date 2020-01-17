@@ -75,6 +75,24 @@ public class Robot extends TimedRobot {
 
     /*---------------------------------------------------------------------------Color sensor code--*/
     // Gets the normalized color value from the sensor
+    m_colorMatcher.addColorMatch(kBlueTarget);
+    m_colorMatcher.addColorMatch(kGreenTarget);
+    m_colorMatcher.addColorMatch(kRedTarget);
+    m_colorMatcher.addColorMatch(kYellowTarget);
+    /*----------------------------------------------------------------------------------------------*/
+    
+  }
+
+  /**
+   * This function is called every robot packet, no matter the mode. Use
+   * this for items like diagnostics that you want ran during disabled,
+   * autonomous, teleoperated and test.
+   *
+   * <p>This runs after the mode specific periodic functions, but before
+   * LiveWindow and SmartDashboard integrated updating.
+   */
+  @Override
+  public void robotPeriodic() {  
     Color detectedColor = m_colorSensor.getColor(); 
 
     String colorString;
@@ -99,20 +117,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Blue", detectedColor.blue);
     SmartDashboard.putNumber("Confidence", match.confidence);
     SmartDashboard.putString("Detected Color", colorString);
-    /*----------------------------------------------------------------------------------------------*/
-    
-  }
-
-  /**
-   * This function is called every robot packet, no matter the mode. Use
-   * this for items like diagnostics that you want ran during disabled,
-   * autonomous, teleoperated and test.
-   *
-   * <p>This runs after the mode specific periodic functions, but before
-   * LiveWindow and SmartDashboard integrated updating.
-   */
-  @Override
-  public void robotPeriodic() {
+    System.out.println(colorString);
   }
 
   /**
@@ -155,7 +160,6 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     //m_myRobot.tankDrive(m_leftStick.getY(), m_rightStick.getY());
-    System.out.println("hello");
   }
 
   /**
