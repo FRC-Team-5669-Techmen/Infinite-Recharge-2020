@@ -73,7 +73,7 @@ public class Robot extends TimedRobot {
     // Tank Drive
     m_myRobot = new DifferentialDrive(m_left, m_right);
 
-    // Color sensor code
+    /*---------------------------------------------------------------------------Color sensor code--*/
     // Gets the normalized color value from the sensor
     Color detectedColor = m_colorSensor.getColor(); 
 
@@ -92,13 +92,15 @@ public class Robot extends TimedRobot {
     } else {
       colorString = "Unknown";
     }
-
+    System.out.println(colorString);
     // Displays the color in SmartDashboard
     SmartDashboard.putNumber("Red", detectedColor.red);
     SmartDashboard.putNumber("Green", detectedColor.green);
     SmartDashboard.putNumber("Blue", detectedColor.blue);
     SmartDashboard.putNumber("Confidence", match.confidence);
     SmartDashboard.putString("Detected Color", colorString);
+    /*----------------------------------------------------------------------------------------------*/
+    
   }
 
   /**
@@ -152,7 +154,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
-    m_myRobot.tankDrive(m_leftStick.getY(), m_rightStick.getY());
+    //m_myRobot.tankDrive(m_leftStick.getY(), m_rightStick.getY());
+    System.out.println("hello");
   }
 
   /**
