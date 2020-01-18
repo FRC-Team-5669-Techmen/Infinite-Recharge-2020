@@ -3,10 +3,11 @@
 /* Open Source Software - may be modified and shared by FRC teams. The code   */
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
-/*----------------------------------------------------------------------------*/
+/*------------------------------P----------------------------------------------*/
 
 package frc.robot;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.revrobotics.ColorMatch;
 import com.revrobotics.ColorMatchResult;
 import com.revrobotics.ColorSensorV3;
@@ -15,7 +16,6 @@ import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -38,16 +38,16 @@ public class Robot extends TimedRobot {
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
 
-  // Left Motors - Resource: https://www.chiefdelphi.com/t/differential-drive-with-talon-srx/164666
-  VictorSP m_frontLeft = new VictorSP(1);
-  VictorSP m_midLeft = new VictorSP(2);
-  VictorSP m_rearLeft = new VictorSP(3);
+  // Left Motors - Thank you from https://www.chiefdelphi.com/t/differential-drive-with-talon-srx/164666
+  WPI_TalonSRX m_frontLeft = new WPI_TalonSRX(1);
+  WPI_TalonSRX m_midLeft = new WPI_TalonSRX(2);
+  WPI_TalonSRX m_rearLeft = new WPI_TalonSRX(3);
   SpeedControllerGroup m_left = new SpeedControllerGroup(m_frontLeft, m_midLeft, m_rearLeft);
 
   // Right Motors
-  VictorSP m_frontRight = new VictorSP(4);
-  VictorSP m_midRight = new VictorSP(5);
-  VictorSP m_rearRight = new VictorSP(6);
+  WPI_TalonSRX m_frontRight = new WPI_TalonSRX(4);
+  WPI_TalonSRX m_midRight = new WPI_TalonSRX(5);
+  WPI_TalonSRX m_rearRight = new WPI_TalonSRX(6);
   SpeedControllerGroup m_right = new SpeedControllerGroup(m_frontRight, m_midRight, m_rearRight);
 
   // Color Sensor - Resource: https://github.com/REVrobotics/Color-Sensor-v3-Examples/blob/master/Java/Color%20Match/src/main/java/frc/robot/Robot.java
