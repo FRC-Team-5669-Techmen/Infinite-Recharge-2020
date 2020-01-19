@@ -30,8 +30,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends TimedRobot {
   private DifferentialDrive m_myRobot;
-  private Joystick m_leftStick;
-  private Joystick m_rightStick;
+  private Joystick m_leftStick = new Joystick(0);
+  private Joystick m_rightStick = new Joystick(0);  //worked
 
   private static final String kDefaultAuto = "Default";
   private static final String kCustomAuto = "My Auto";
